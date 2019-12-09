@@ -1,0 +1,174 @@
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* Bordered form */
+form {
+  border: 3px solid #f1f1f1;
+}
+/* Full-width inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  position: center;
+}
+
+#loginDiv {
+    width: 500px;
+    padding: 5px 5px 5px 5px;
+    margin: 0 auto;
+    background-color: white;
+    border: 3px solid #ccc;
+}
+#editDiv {
+    width: 500px;
+    margin: 0 auto;
+    background-color: white;
+    border: 3px solid #ccc;
+}
+
+#Dashboard {
+  text-align: center;
+}
+
+#Back
+{
+  text-align:center;
+}
+
+#viewproposed
+{
+  width: 300px;
+  height: 40px;
+}
+
+#viewverified
+{
+  width: 300px;
+  height: 40px;
+}
+
+#loginDiv
+{
+  text-align: center;
+}
+
+.btn-group {
+  background-color: black;
+  border: 1px solid gold; 
+  color: gold; 
+  padding: 10px 24px; 
+  margin: 8px auto;
+  cursor: pointer; 
+  width: 10%;
+  display: inline-block;
+}
+
+.dashbutton
+{
+  background-color: black;
+  color: gold;
+  padding: 14px 20px;
+  margin: 8px auto;
+  display: block;
+  border: none;
+  cursor: pointer;
+  width: 25%;
+  display: inline-block;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: black;
+  color: gold;
+  padding: 14px 20px;
+  margin: 8px auto;
+  display: block;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  display: inline-block;
+}
+
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+.container{
+  padding: 25px;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.logo {
+  width: 100%;
+  border-radius: 50%;
+}
+img.kiss {
+  width: 100%;
+  border-radius: 10%;
+}
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+.header {
+  text-align: center;
+  background: rgb(5, 5, 5);
+  color: gold;
+  size: 30px;
+}
+h1, h2{
+  color:white;
+}
+h1, h2 {
+  padding: 15px;
+  text-align: center;
+  background: rgb(15, 14, 14);
+  color: gold;
+  font-size: 30px;
+}
+table {
+  border-collapse: collapse;
+}
+table th,td {
+  float: center;
+  border: 4px black;
+  background-color: white;
+  position: center;
+}
+table{
+    margin: auto;            
+}​
+th{
+  background-color:pink;
+  text-align: center;
+  color: black;
+}
+td {
+  height: 25px;
+  vertical-align: bottom;
+  color: black;
+}
+th, td {
+  padding: 15px;
+  text-align: center;
+  color: black;
+  border-bottom: 3px solid #ddd;
+}
+tr:hover {background-color: #ffb6c1;}
+tr:first-child:hover {background-color: white;}
+

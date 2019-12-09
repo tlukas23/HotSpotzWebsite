@@ -1,0 +1,77 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hot Spotz</title>
+	<script type="text/javascript" src="code.js"></script>	
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" >
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<div class = "header">
+		<h1>Hot Spotz</h1>
+	</div>
+
+
+<div id="loginDiv">
+	<h3>Sign Up</h3>
+	<input type="text" id="loginUsername" placeholder="Username" /><br />
+	<input type="password" id="loginPassword" placeholder="Password"/><br />
+	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Log in </button>
+	<span id="loginResult"></span>
+</div>
+
+
+<div id="editDiv"  style="display:none; visibility:hidden;">
+	<h3 style = "text-align: center;">Edit the Location</h3><br />
+	<input type="text" id="name" placeholder="Location Name" /><br />
+	<input type="text" id="address" placeholder="Address"/><br />
+	<input type="text" id="phone" placeholder="Phone"/><br />
+	<input type="text" id="distance" placeholder="Distance"/><br />
+	<button font-family = ""type="button" id="editButton" class="buttons" onclick="doEdit();"> Submit </button>
+	<br />
+	<button type="button" id="backButton" class= "buttons" onclick="closeEdit();"> Go Back </button>
+	<br />
+	<span id="editResult"></span>
+</div>
+
+
+<div id="Dashboard" style="display:none; visibility:hidden;">
+	<span id="username"></span>
+	<button type="button" id="viewproposed"  onclick="getLocation(0);"> View Proposed Locations </button>
+	<button type="button" id="viewverified"  onclick="getLocation(1);"> View Verified Locations </button>
+</div>
+
+<div id="Locations"  style="display:none; visibility:hidden;">
+		<h3>Sort By: </h3>
+		<button type="button"  class = "btn-group"onclick="sortLocation(0); ">All</button>
+		<button type="button"  class = "btn-group"onclick="sortLocation(2);">Entertainment</button>
+		<button type="button"  class = "btn-group"onclick="sortLocation(1);">Restaurants</button>
+		<button type="button"  class = "btn-group"onclick="sortLocation(3);">Shopping</button>
+
+		<br></br>
+	  
+		<table class="Locations" id="conTable" border="1">
+			<tr><th width=100>Name</th>
+				<th width=100>Address</th>
+				<th width=100>Phone</th>
+				<th width=100>Review</th>
+				<th width=100>Distance</th>
+				<th width=125>Options</th>
+			</tr>
+		</table>
+		<span id="locationview"></span>
+</div>
+
+<div id="Back" style="display:none; visibility:hidden;">
+	<br />
+	<button type="button" id="dashboard" class="dashbutton" onclick="getDashboard();"> Back to Dashboard </button>
+</div>
+
+<div id="loggedInDiv" style="display:none; visibility:hidden;">
+	<span id="username"></span><br /><br/>
+	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
+</div>
+
+</body>
+</html>
