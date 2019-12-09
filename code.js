@@ -1,4 +1,4 @@
-var urlBase = 'http://ec2-54-164-237-212.compute-1.amazonaws.com';
+var urlBase = 'http://kissmethruthephone.com';
 
 var userId = 0;
 var username = "";
@@ -11,6 +11,7 @@ var editname = "";
 var editaddress = "";
 var editphone = "";
 var editdistance = "";
+var editcategory = "";
 
 function doLogin()
 {
@@ -267,11 +268,14 @@ function editLocation(id)
 {
 	globalid = id;
 	hideOrShow("editDiv", true);
+	hideOrShow("Locations", false);
+	hideOrShow("Back", false);
 	editAutofill(id);
 }
 
 function closeEdit()
 {
+	hideOrShow("Locations", true);
 	hideOrShow("editDiv", false);
 }
 
@@ -300,11 +304,13 @@ function editAutofill(id)
 				document.getElementById("address").placeholder = jsonObject.Address;
 				document.getElementById("distance").placeholder = jsonObject.Distance;
 				document.getElementById("phone").placeholder = jsonObject.Phone;
+				document.getElementById("category").placeholder = jsonObject.Category;
 
 				editname = jsonObject.Name;
 				editaddress = jsonObject.Address;
 				editdistance = jsonObject.Distance;
 				editphone = jsonObject.Phone;
+				editcategory = jsonObject.Category;
 				
 			}
 		};
@@ -323,6 +329,7 @@ function doEdit()
 	var address = document.getElementById("address").value;
 	var distance = document.getElementById("distance").value;
 	var phone = document.getElementById("phone").value;
+	var category = document.getElementById("category").value;
 
 	if(name == "")
 	{
@@ -340,8 +347,13 @@ function doEdit()
 	{
 		phone = editphone;
 	}
+	if(category == "")
+	{
+		category = editcategory;
+	}
+	
 
-	var jsonPayload = '{"Name" : "' + name + '", "Address" : "' + address + '", "Phone" : "' + phone + '", "Distance" : "' + distance + '", "Id" : "' + globalid + '"}';
+	var jsonPayload = '{"Name" : "' + name + '", "Address" : "' + address + '", "Phone" : "' + phone + '", "Distance" : "' + distance + '", "Category" : "' + category + '", "Id" : "' + globalid + '"}';
 	var url = urlBase + '/editLocation.php';
 	
 	// Create and open a connection to the server
@@ -375,16 +387,13 @@ function doEdit()
 	}
 }
 
-function searchContact()
+function searchLocation()
 {
 	// Get info from the html
 	var search = document.getElementById("searchText").value;
 
-	document.getElementById("contactAddResult").innerHTML = "";
-	document.getElementById("contactSearchResult").innerHTML = "";
-
-	var jsonPayload = '{"search" : "' + search + '", "id" : "' + userId + '"}';
-	var url = urlBase + '/searchContacts.php';
+	var jsonPayload = '{"search" : "' + search + '", "Verified" : "' + globalverified + '"}';
+	var url = urlBase + '/searchLocation.php';
 	
 	var xhr = createCORSRequest('GET', url);
 	xhr.open("POST", url, true);
@@ -408,29 +417,55 @@ function searchContact()
 					document.getElementById("conTable").deleteRow(i -1);
 				}
 
-				while (temp < jsonObject.phone.length)
+				if(globalverified == 1)
 				{
-					var table = document.getElementById('conTable');
+					while (temp < jsonObject.Address.length)
+					{
+						var table = document.getElementById('conTable');
 
-					// insert row at the bottom of the table and then fill with the found contact information
-					var row = table.insertRow(-1);
+						// add a new row to the bottom of the table, then fill with information
+						var row = table.insertRow(-1);
 
-					var cell1 = row.insertCell(0);
-					var cell2 = row.insertCell(1);
-					var cell3 = row.insertCell(2);
-					var cell4 = row.insertCell(3);
-					var cell5 = row.insertCell(4);
-					var cell6 = row.insertCell(5);
+						var cell1 =row.insertCell(0);
+						var cell2 =row.insertCell(1);
+						var cell3 =row.insertCell(2);
+						var cell4 =row.insertCell(3);
+						var cell5 =row.insertCell(4);
+						var cell6 =row.insertCell(5);
 
+						cell1.innerHTML = jsonObject.Name[temp];
+						cell2.innerHTML = jsonObject.Address[temp];
+						cell3.innerHTML = jsonObject.Phone[temp];
+						cell4.innerHTML = jsonObject.Review[temp];
+						cell5.innerHTML = jsonObject.Distance[temp];
+						cell6.innerHTML = '<td><button type="button" class="button" id="editbut" onclick="editLocation(' + (jsonObject.Id[temp]) + ');">Edit</button></td>'+'<td><button type="button" class="button" id ="deletebut" onclick="deleteLocation(' + (jsonObject.Id[temp]) + ');">Delete</button></td>';
+						temp++;
+					}
+				}
+				else
+				{
+					while (temp < jsonObject.Address.length)
+					{
+						var table = document.getElementById('conTable');
 
-					cell1.innerHTML = jsonObject.firstname[temp];
-					cell2.innerHTML = jsonObject.lastname[temp];
-					cell3.innerHTML = jsonObject.phone[temp];
-					cell4.innerHTML = jsonObject.email[temp];
-					cell5.innerHTML = '<td><button type="button" class="button" onclick="editContact(' + (jsonObject.id[temp]) + ');">Edit</button></td>';
-					cell6.innerHTML = '<td><button type="button" class="button" id ="deletebut" onclick="deleteContact(' + (jsonObject.id[temp]) + ');">Delete</button></td>';
+						// add a new row to the bottom of the table, then fill with information
+						var row = table.insertRow(-1);
 
-					temp++;
+						var cell1 =row.insertCell(0);
+						var cell2 =row.insertCell(1);
+						var cell3 =row.insertCell(2);
+						var cell4 =row.insertCell(3);
+						var cell5 =row.insertCell(4);
+						var cell6 =row.insertCell(5);
+
+						cell1.innerHTML = jsonObject.Name[temp];
+						cell2.innerHTML = jsonObject.Address[temp];
+						cell3.innerHTML = jsonObject.Phone[temp];
+						cell4.innerHTML = jsonObject.Review[temp];
+						cell5.innerHTML = jsonObject.Distance[temp];
+						cell6.innerHTML = '<td><button type="button" class="button" id="verifybut" onclick="verifyLocation(' + (jsonObject.Id[temp]) + ');">Verify</button></td>'+'<td><button type="button" class="button" id ="deletebut" onclick="deleteLocation(' + (jsonObject.Id[temp]) + ');">Delete</button></td>';
+						temp++;
+					}
 				}
 			}
 		};

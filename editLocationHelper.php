@@ -20,13 +20,14 @@
     if($result->num_rows > 0)
     {
        // Store row result from query into $row variable
-       $row = $result->fetch_assoc();
+        $row = $result->fetch_assoc();
         $Name = $row["Name"];
         $Address = $row["Address"];
         $Distance = $row["Distance"];
         $Phone = $row["Phone"];
+        $Category = $row["Category"];
         
-        returnWithInfo($Name, $Address, $Distance, $Phone);
+        returnWithInfo($Name, $Address, $Distance, $Phone, $Category);
         $conn->close();
     }
     else
@@ -55,9 +56,9 @@
     }
     
     // Format return into json
-    function returnWithInfo($Name, $Address, $Distance, $Phone)
+    function returnWithInfo($Name, $Address, $Distance, $Phone, $Category)
     {
-      $retVal = '{"Name": "' . $Name . '" ,"Address": "' . $Address . '", "Distance": "' . $Distance . '", "Phone": "' . $Phone . '","error":""}';
+      $retVal = '{"Name": "' . $Name . '" ,"Address": "' . $Address . '", "Distance": "' . $Distance . '", "Phone": "' . $Phone . '","Category": "' . $Category . '","error":""}';
       sendResultInfoAsJson($retVal);
     }
 ?>

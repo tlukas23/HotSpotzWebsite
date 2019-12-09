@@ -5,6 +5,7 @@
     $Name = $inData["Name"];
     $Address = $inData["Address"];
     $Phone = $inData["Phone"];
+    $Category = $inData["Category"];
     
     $conn = new mysqli("localhost", "guest", "guest123", "HotSpotz");
 	if ($conn->connect_error)
@@ -12,12 +13,12 @@
 		returnWithError( $conn->connect_error );
     }
     
-    $query = "UPDATE `Locations` SET `Name`= '$Name',`Address` = '$Address', `Phone`= '$Phone',`Distance`= '$Distance' WHERE Id=$Id";
+    $query = "UPDATE `Locations` SET `Name`= '$Name',`Address` = '$Address', `Phone`= '$Phone',`Distance`= '$Distance', `Category`= '$Category'  WHERE Id=$Id";
     $conn->query($query);
     
     $conn->close();
     // Decode json file received
-    function getRequestInfo($Name, $Address, $Phone, $Distance, $Id)
+    function getRequestInfo($Name, $Address, $Phone, $Distance, $Category, $Id)
     {
         return json_decode(file_get_contents('php://input'), true);
     }
@@ -37,9 +38,9 @@
     }
     
     // Format return information in json
-    function returnWithInfo($Name, $Address, $Distance, $Phone, $Id)
+    function returnWithInfo($Name, $Address, $Distance, $Phone, $Category, $Id)
     {
-        $retVal = '{"Name":[' . $Name . '], "Address":[' . $Address . '], "Distance":[' . $Distance . '], "Phone":[' . $Phone . '], "Id":[' . $Id . '],"error":""}';
+        $retVal = '{"Name":[' . $Name . '], "Address":[' . $Address . '], "Distance":[' . $Distance . '], "Phone":[' . $Phone . '], "Category":[' . $Category . '],"Id":[' . $Id . '],"error":""}';
         sendResultInfoAsJson($retVal);
     }
 ?>
